@@ -102,15 +102,15 @@
 
 #pragma mark - FSCalendarDataSource
 
-- (NSDate *)minimumDateForCalendar:(FSCalendar *)calendar
-{
-    return [self.dateFormatter dateFromString:@"2016-07-08"];
-}
-
-- (NSDate *)maximumDateForCalendar:(FSCalendar *)calendar
-{
-    return [self.gregorian dateByAddingUnit:NSCalendarUnitMonth value:5 toDate:[NSDate date] options:0];
-}
+//- (NSDate *)minimumDateForCalendar:(FSCalendar *)calendar
+//{
+//    return [self.dateFormatter dateFromString:@"2016-07-08"];
+//}
+//
+//- (NSDate *)maximumDateForCalendar:(FSCalendar *)calendar
+//{
+//    return [self.gregorian dateByAddingUnit:NSCalendarUnitMonth value:5 toDate:[NSDate date] options:0];
+//}
 
 - (NSString *)calendar:(FSCalendar *)calendar titleForDate:(NSDate *)date
 {

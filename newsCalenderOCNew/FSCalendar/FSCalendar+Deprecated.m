@@ -14,7 +14,7 @@
 
 @implementation FSCalendar (Deprecated)
 
-@dynamic identifier, lineHeightMultiplier;
+@dynamic  lineHeightMultiplier;
 
 - (void)setShowsPlaceholders:(BOOL)showsPlaceholders
 {
@@ -220,19 +220,6 @@
     return [self isDate:date equalToDate:[NSDate date] toCalendarUnit:FSCalendarUnitDay];
 }
 
-- (void)setIdentifier:(NSString *)identifier
-{
-    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:identifier];
-    [self setValue:gregorian forKey:@"gregorian"];
-    [self fs_performSelector:NSSelectorFromString(@"invalidateDateTools") withObjects:nil, nil];
-    
-    if ([[self valueForKey:@"hasValidateVisibleLayout"] boolValue]) {
-        [self reloadData];
-    }
-    [self fs_setVariable:[self.gregorian dateBySettingHour:0 minute:0 second:0 ofDate:self.minimumDate options:0] forKey:@"_minimumDate"];
-    [self fs_setVariable:[self.gregorian dateBySettingHour:0 minute:0 second:0 ofDate:self.currentPage options:0] forKey:@"_currentPage"];
-    [self fs_performSelector:NSSelectorFromString(@"scrollToPageForDate:animated") withObjects:self.today, @NO, nil];
-}
 
 - (NSString *)identifier
 {

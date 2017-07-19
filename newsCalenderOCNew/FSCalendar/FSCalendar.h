@@ -437,10 +437,6 @@ IB_DESIGNABLE
  */
 @property (readonly, nonatomic) NSArray<NSDate *> *selectedDates;
 
-/**
- Reload the dates and appearance of the calendar.
- */
-- (void)reloadData;
 
 /**
  Change the scope of the calendar. Make sure `-calendar:boundingRectWillChange:animated` is correctly adopted.
@@ -602,7 +598,6 @@ IB_DESIGNABLE
 @interface FSCalendar (Deprecated)
 @property (assign, nonatomic) CGFloat lineHeightMultiplier FSCalendarDeprecated(rowHeight);
 @property (assign, nonatomic) IBInspectable BOOL showsPlaceholders FSCalendarDeprecated('placeholderType');
-@property (strong, nonatomic) NSString *identifier DEPRECATED_MSG_ATTRIBUTE("Changing calendar identifier is NOT RECOMMENDED. ");
 
 // Use NSCalendar.
 - (NSDate *)dateWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day FSCalendarDeprecated([NSDateFormatter dateFromString:]);
