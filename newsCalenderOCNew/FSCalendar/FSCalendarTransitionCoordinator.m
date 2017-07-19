@@ -121,6 +121,7 @@
     return otherGestureRecognizer == self.collectionView.panGestureRecognizer && self.collectionView.decelerating;
 }
 
+// Todo:
 - (void)scopeTransitionDidBegin:(UIPanGestureRecognizer *)panGesture
 {
     if (self.state != FSCalendarTransitionStateIdle) return;
@@ -130,14 +131,14 @@
         case FSCalendarScopeMonth: {
             if (velocity.y < 0) {
                 self.state = FSCalendarTransitionStateChanging;
-                self.transition = FSCalendarTransitionMonthToWeek;
+//                self.transition = FSCalendarTransitionMonthToWeek;
             }
             break;
         }
         case FSCalendarScopeWeek: {
             if (velocity.y > 0) {
                 self.state = FSCalendarTransitionStateChanging;
-                self.transition = FSCalendarTransitionWeekToMonth;
+//                self.transition = FSCalendarTransitionWeekToMonth;
             }
             break;
         }

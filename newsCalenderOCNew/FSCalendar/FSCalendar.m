@@ -59,8 +59,8 @@ typedef NS_ENUM(NSUInteger, FSCalendarOrientation) {
 
 @property (weak  , nonatomic) UIView                     *contentView;
 @property (weak  , nonatomic) UIView                     *daysContainer;
-@property (weak  , nonatomic) UIView                     *topBorder;
-@property (weak  , nonatomic) UIView                     *bottomBorder;
+//@property (weak  , nonatomic) UIView                     *topBorder;
+//@property (weak  , nonatomic) UIView                     *bottomBorder;
 @property (weak  , nonatomic) FSCalendarScopeHandle      *scopeHandle;
 @property (weak  , nonatomic) FSCalendarCollectionView   *collectionView;
 @property (weak  , nonatomic) FSCalendarCollectionViewLayout *collectionViewLayout;
@@ -229,17 +229,17 @@ typedef NS_ENUM(NSUInteger, FSCalendarOrientation) {
     
     if (!FSCalendarInAppExtension) {
         
-        UIView *view = [[UIView alloc] initWithFrame:CGRectZero];
-        view.backgroundColor = FSCalendarStandardLineColor;
-        view.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin; // Stick to top
-        [self addSubview:view];
-        self.topBorder = view;
+//        UIView *view = [[UIView alloc] initWithFrame:CGRectZero];
+//        view.backgroundColor = FSCalendarStandardLineColor;
+//        view.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin; // Stick to top
+//        [self addSubview:view];
+//        self.topBorder = view;
         
-        view = [[UIView alloc] initWithFrame:CGRectZero];
-        view.backgroundColor = FSCalendarStandardLineColor;
-        view.autoresizingMask = UIViewAutoresizingFlexibleTopMargin; // Stick to bottom
-        [self addSubview:view];
-        self.bottomBorder = view;
+//        view = [[UIView alloc] initWithFrame:CGRectZero];
+//        view.backgroundColor = FSCalendarStandardLineColor;
+//        view.autoresizingMask = UIViewAutoresizingFlexibleTopMargin; // Stick to bottom
+//        [self addSubview:view];
+//        self.bottomBorder = view;
         
     }
     
@@ -366,9 +366,9 @@ typedef NS_ENUM(NSUInteger, FSCalendarOrientation) {
             
         }
         _collectionView.fs_height = FSCalendarHalfFloor(_collectionView.fs_height);
-        _topBorder.frame = CGRectMake(0, -1, self.fs_width, 1);
-        _bottomBorder.frame = CGRectMake(0, self.fs_height, self.fs_width, 1);
-        _scopeHandle.fs_bottom = _bottomBorder.fs_top;
+//        _topBorder.frame = CGRectMake(0, -1, self.fs_width, 1);
+//        _bottomBorder.frame = CGRectMake(0, self.fs_height, self.fs_width, 1);
+//        _scopeHandle.fs_bottom = _bottomBorder.fs_top;
         
     }
     
@@ -988,6 +988,7 @@ typedef NS_ENUM(NSUInteger, FSCalendarOrientation) {
 
 - (CGFloat)preferredRowHeight
 {
+    return 45.f;
     if (_preferredRowHeight == FSCalendarAutomaticDimension) {
         CGFloat headerHeight = self.preferredHeaderHeight;
         CGFloat weekdayHeight = self.preferredWeekdayHeight;
@@ -1351,34 +1352,34 @@ typedef NS_ENUM(NSUInteger, FSCalendarOrientation) {
 {
     if (!self.floatingMode) {
         
-        if (!_calendarHeaderView) {
-            
-            FSCalendarHeaderView *headerView = [[FSCalendarHeaderView alloc] initWithFrame:CGRectZero];
-            headerView.calendar = self;
-            headerView.scrollEnabled = _scrollEnabled;
-            [_contentView addSubview:headerView];
-            self.calendarHeaderView = headerView;
-            
-        }
+//        if (!_calendarHeaderView) {
+//            
+//            FSCalendarHeaderView *headerView = [[FSCalendarHeaderView alloc] initWithFrame:CGRectZero];
+//            headerView.calendar = self;
+//            headerView.scrollEnabled = _scrollEnabled;
+//            [_contentView addSubview:headerView];
+//            self.calendarHeaderView = headerView;
+//            
+//        }
+//        
+//        if (!_calendarWeekdayView) {
+//            FSCalendarWeekdayView *calendarWeekdayView = [[FSCalendarWeekdayView alloc] initWithFrame:CGRectZero];
+//            calendarWeekdayView.calendar = self;
+//            [_contentView addSubview:calendarWeekdayView];
+//            _calendarWeekdayView = calendarWeekdayView;
+//        }
         
-        if (!_calendarWeekdayView) {
-            FSCalendarWeekdayView *calendarWeekdayView = [[FSCalendarWeekdayView alloc] initWithFrame:CGRectZero];
-            calendarWeekdayView.calendar = self;
-            [_contentView addSubview:calendarWeekdayView];
-            _calendarWeekdayView = calendarWeekdayView;
-        }
-        
-        if (_scrollEnabled) {
-            if (!_deliver) {
-                FSCalendarHeaderTouchDeliver *deliver = [[FSCalendarHeaderTouchDeliver alloc] initWithFrame:CGRectZero];
-                deliver.header = _calendarHeaderView;
-                deliver.calendar = self;
-                [_contentView addSubview:deliver];
-                self.deliver = deliver;
-            }
-        } else if (_deliver) {
-            [_deliver removeFromSuperview];
-        }
+//        if (_scrollEnabled) {
+//            if (!_deliver) {
+//                FSCalendarHeaderTouchDeliver *deliver = [[FSCalendarHeaderTouchDeliver alloc] initWithFrame:CGRectZero];
+//                deliver.header = _calendarHeaderView;
+//                deliver.calendar = self;
+//                [_contentView addSubview:deliver];
+//                self.deliver = deliver;
+//            }
+//        } else if (_deliver) {
+//            [_deliver removeFromSuperview];
+//        }
         
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"

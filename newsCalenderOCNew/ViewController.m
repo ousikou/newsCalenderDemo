@@ -15,7 +15,6 @@
 
 @property (weak, nonatomic) FSCalendar *calendar;
 
-@property (weak, nonatomic) UILabel *eventLabel;
 @property (strong, nonatomic) NSCalendar *gregorian;
 @property (strong, nonatomic) NSDateFormatter *dateFormatter;
 
@@ -57,23 +56,6 @@
     
     UIPanGestureRecognizer *scopeGesture = [[UIPanGestureRecognizer alloc] initWithTarget:calendar action:@selector(handleScopeGesture:)];
     [calendar addGestureRecognizer:scopeGesture];
-    
-    
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(calendar.frame)+10, self.view.frame.size.width, 50)];
-    label.textAlignment = NSTextAlignmentCenter;
-    label.font = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
-    [self.view addSubview:label];
-    self.eventLabel = label;
-    
-    NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc] initWithString:@""];
-    NSTextAttachment *attatchment = [[NSTextAttachment alloc] init];
-    attatchment.image = [UIImage imageNamed:@"icon_cat"];
-    attatchment.bounds = CGRectMake(0, -3, attatchment.image.size.width, attatchment.image.size.height);
-    [attributedText appendAttributedString:[NSAttributedString attributedStringWithAttachment:attatchment]];
-    [attributedText appendAttributedString:[[NSAttributedString alloc] initWithString:@"  Hey Daily Event  "]];
-    [attributedText appendAttributedString:[NSAttributedString attributedStringWithAttachment:attatchment]];
-    self.eventLabel.attributedText = attributedText.copy;
-    
 }
 
 - (void)viewDidLoad
@@ -89,7 +71,7 @@
     [self.calendar selectDate:[self.gregorian dateByAddingUnit:NSCalendarUnitDay value:1 toDate:[NSDate date] options:0] scrollToDate:NO];
     
     // Uncomment this to perform an 'initial-week-scope'
-    // self.calendar.scope = FSCalendarScopeWeek;
+    self.calendar.scope = FSCalendarScopeMonth;
     
     // For UITest
     self.calendar.accessibilityIdentifier = @"calendar";
@@ -141,9 +123,6 @@
 - (void)calendar:(FSCalendar *)calendar boundingRectWillChange:(CGRect)bounds animated:(BOOL)animated
 {
     calendar.frame = (CGRect){calendar.frame.origin,bounds.size};
-    
-    self.eventLabel.frame = CGRectMake(0, CGRectGetMaxY(calendar.frame)+10, self.view.frame.size.width, 50);
-    
 }
 
 - (BOOL)calendar:(FSCalendar *)calendar shouldSelectDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition
